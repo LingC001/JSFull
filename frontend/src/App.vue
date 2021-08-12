@@ -13,7 +13,7 @@
 
 <script>
 import dayjs from 'dayjs'
-const monFoodCost = 1200
+const dayFoodCost = 40
 
 export default {
   name: 'App',
@@ -24,12 +24,23 @@ export default {
 	}
   },
   computed:{},
+  created() {
+  	console.log(window);
+  },
   methods:{
 	calculate(){
+		//当前日数
 		let curDay = dayjs().date()
+		//本月总天数
 		let curMonDays = dayjs().daysInMonth()
-		let restDay = curMonDays - curDay + 12
-		let restFoodCost = Math.round(restDay * monFoodCost/curMonDays)
+		//剩余天数
+		let restDay 
+		if(curDay>12){
+		    restDay = curMonDays - curDay + 12
+		}else{
+			restDay = 12 - curDay
+		}
+		let restFoodCost = Math.round(restDay * dayFoodCost)
 		this.balance = this.total - restFoodCost
 		console.log("curDay: ",curDay);
 		console.log("curMonDays: ",curMonDays);
