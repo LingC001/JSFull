@@ -1,6 +1,6 @@
 module.exports = {
-	lintOnSave:'warning',
-	devServer:{
-
-	}
-}
+  lintOnSave: "warning",
+  devServer: {
+    port: 8082
+  }
+};
