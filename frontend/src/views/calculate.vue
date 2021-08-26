@@ -17,40 +17,60 @@
 </template>
 
 <script>
-import dayjs from "dayjs";
-const dayFoodCost = 40;
+  import dayjs from 'dayjs'
+  import { saveCalResult } from '@/api/calculate.js'
 
-export default {
-  name: "App",
-  data() {
-    return {
-      total: "",
-      balance: ""
-    };
-  },
-  computed: {},
-  created() {},
-  methods: {
-    calculate() {
-      //当前日数
-      let curDay = dayjs().date();
-      //本月总天数
-      let curMonDays = dayjs().daysInMonth();
-      //剩余天数
-      let restDay;
-      if (curDay > 12) {
-        restDay = curMonDays - curDay + 12;
-      } else {
-        restDay = 12 - curDay;
+  const dayFoodCost = 40
+
+  export default {
+    name: 'App',
+    data() {
+      return {
+        total: '',
+        balance: ''
       }
-      let restFoodCost = Math.round(restDay * dayFoodCost);
-      this.balance = this.total - restFoodCost;
+    },
+    computed: {},
+    created() {},
+    methods: {
+      calculate() {
+        //未输入则不计算
+        if (!this.total) {
+          return
+        }
+        //当前日数
+        let curDay = dayjs().date()
+        //本月总天数
+        let curMonDays = dayjs().daysInMonth()
+        //剩余天数
+        let restDay
+        if (curDay > 12) {
+          restDay = curMonDays - curDay + 12
+        } else {
+          restDay = 12 - curDay
+        }
+        let restFoodCost = Math.round(restDay * dayFoodCost)
+        let balance = this.total - restFoodCost
+        let params = {
+          calValue: balance
+        }
+        saveCalResult(params)
+          .then(res => {
+            console.log(res)
+          })
+          .catch(err => {
+            this.$dialog.alert({
+              message: err
+            })
+          })
+        //发送请求存储计算结果
+        this.balance = balance
+      }
     }
   }
-};
 </script>
 
 <style>
-#app {
-}
+  #app {
+  }
 </style>

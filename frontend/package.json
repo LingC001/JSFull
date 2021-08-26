@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "dayjs": "^1.10.6",
     "vant": "^2.12.24",
@@ -23,6 +24,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^6.2.2",
+    "mockjs": "^1.1.0",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [
