@@ -6,11 +6,21 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('@/views/calculate')
+    redirect:'/index'
+  },
+  {
+    path: '/',
+    component: () => import('@/views/index/index'),
+    children:[
+      {
+        path:'index',
+        component:() => import('@/views/calculate/calculate')
+      }
+    ]
   },
   {
     path: '*',
-    component: () => import('@/views/calculate')
+    component: () => import('@/views/calculate/calculate')
   }
 ]
 

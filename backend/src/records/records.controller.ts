@@ -1,11 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Res,
-  HttpStatus,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, Res, HttpStatus } from '@nestjs/common';
 import { RecordsService } from './records.service';
 import { CreateRecordDto } from './dto/create-record.dto';
 import { Record } from './schemas/record.schema';
@@ -17,13 +10,13 @@ export class RecordsController {
   @Post()
   public async createRecord(
     @Res() res,
-    @Body() CreateRecordDto: CreateRecordDto
+    @Body() CreateRecordDto: CreateRecordDto,
   ) {
-    try{
-      const records =  await this.RecordsService.create(CreateRecordDto);
+    try {
+      const records = await this.RecordsService.create(CreateRecordDto);
       return res.status(HttpStatus.OK).json({
         message: 'Records has been created successfully',
-        records
+        records,
       });
     } catch (err) {
       return res.status(HttpStatus.BAD_REQUEST).json({
@@ -34,10 +27,8 @@ export class RecordsController {
   }
 
   @Get()
-  public async findAll(
-    @Res() res,
-  ): Promise<Record[]> {
-    const records = await this.RecordsService.findAll()
+  public async findAll(@Res() res): Promise<Record[]> {
+    const records = await this.RecordsService.findAll();
     return res.status(HttpStatus.OK).json(records);
   }
 }
