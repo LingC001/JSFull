@@ -2,7 +2,7 @@ module.exports = {
   lintOnSave: 'warning',
   devServer: {
     port: 8080,
-    public: '192.168.0.158',
+    public: '192.168.0.86',
     // 反向代理配置
     proxy: {
       '/api': {
@@ -10,7 +10,7 @@ module.exports = {
         changeOrigin: true,
         ws: false,
         pathRewrite: {
-          '^/api': '/'
+          // '^/api': '/'
         }
       }
     }
