@@ -8,7 +8,6 @@ exports.create = (req, res) => {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
-    console.log("req",req.body.calValue)
   // Create a records
   const records = new Records({
     calValue: req.body.calValue

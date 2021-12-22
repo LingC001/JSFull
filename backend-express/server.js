@@ -1,14 +1,9 @@
 const express = require("express");
 // const bodyParser = require("body-parser"); /* deprecated */
-const cors = require("cors");
 
 const app = express();
 
-const corsOptions = {
-    origin: "http://localhost:8081"
-};
 
-app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
 app.use(express.json());  /* bodyParser.json() is deprecated */
